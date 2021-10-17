@@ -24,7 +24,7 @@ html {
 
 .main {
   background-color: var(--bgc-prime);
-  padding: 5vh 10vw;
+  padding: 2vh 10vw 4vh;
 }
 
 /* Slider */
@@ -32,16 +32,16 @@ html {
 .slider {
   display: grid;
   margin: 0 auto;
-  width: 50vw;
+  width: 60vmax;
   grid-template-rows: 1fr max-content;
   grid-template-columns: 1fr;
   overflow: hidden;
+  transition: calc(2 * var(--basic-dalay));
 }
 
 /* Bullets */
 
 .bullet {
-  display: inline-block;
   grid-column: 1/2;
   grid-row: 2/3;
   z-index: 10;
@@ -107,6 +107,7 @@ html {
 .img {
   border-radius: 1rem;
   width: 100%;
+  transition: border-radius var(--basic-dalay) ease-out;
 }
 
 .caption {
@@ -134,7 +135,54 @@ html {
     background-color: slateblue;
   }
 
+  /* Slider */
+
+  .slider {
+    width: 80vw;
+    grid-template-rows: 1fr 5rem;
+  }
+
+  /* Bullet */
+
+  .bullet {
+    justify-self: center;
+  }
+  #bullet-01 {
+    margin-right: 120px;
+  }
+  #bullet-02 {
+    margin-right: 40px;
+  }
+  #bullet-03 {
+    margin-right: -40px;
+  }
+  #bullet-04 {
+    margin-right: -120px;
+  }
+
+  /* Card */
+
+  .card {
+    transform: translateX(90%);
+    transition: transform var(--basic-dalay) ease-in-out,
+      opacity var(--basic-dalay) ease-out,
+      color var(--basic-dalay) ease-out var(--basic-dalay);
+  }
+
   .img {
     border-radius: 1vmax;
+  }
+
+  .caption {
+    margin-top: 5rem;
+    font-size: 1.4rem;
+    padding: 0;
+  }
+
+  #bullet-01:checked ~ #slide-01,
+  #bullet-02:checked ~ #slide-02,
+  #bullet-03:checked ~ #slide-03,
+  #bullet-04:checked ~ #slide-04 {
+    transform: translateX(0);
   }
 }
