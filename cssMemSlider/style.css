@@ -1,11 +1,28 @@
 /* General */
 
 :root {
+  /* Colors */
+  --dark-gray: #323232;
+  --white: #ffffff;
+  --black: #000000;
+  --light-blue: #8aa9ff;
+
+  /* Fonts */
+  --font-stack: sans-serif;
+  --basic-font-size: 14px;
+
+  /* Bullet */
+  --bullet-size: 1.5rem;
+
   /* Delays */
   --basic-dalay: 0.5s;
 
-  /* Colors */
-  --bgc-prime: #323232;
+  /* Variables */
+  --bg-prime: var(--dark-gray);
+  --fc-light: var(--white);
+  --hover-accent: var(--white);
+  --ctrls-prime-color: var(--light-blue);
+  --check-mark: var(--black);
 }
 
 *,
@@ -17,13 +34,14 @@
 }
 
 html {
-  font-family: sans-serif;
-  color: white;
+  font-family: var(--font-stack);
+  font-size: var(--basic-font-size);
+  color: var(--fc-light);
   background-color: black;
 }
 
 .main {
-  background-color: var(--bgc-prime);
+  background-color: var(--bg-prime);
   padding: 2vh 10vw 4vh;
 }
 
@@ -48,45 +66,45 @@ html {
   justify-self: end;
   cursor: pointer;
   appearance: none;
-  padding: 20px;
-  width: 0px;
-  height: 0px;
+  padding: var(--bullet-size);
+  width: 0;
+  height: 0;
   position: relative;
 }
 #bullet-01 {
-  margin-right: 120px;
+  margin-right: calc(var(--bullet-size) * 6);
 }
 #bullet-02 {
-  margin-right: 80px;
+  margin-right: calc(var(--bullet-size) * 4);
 }
 #bullet-03 {
-  margin-right: 40px;
+  margin-right: calc(var(--bullet-size) * 2);
 }
 #bullet-04 {
-  margin-right: 0px;
+  margin-right: 0;
 }
 
 .bullet::before {
   content: " ";
   display: block;
   position: absolute;
-  top: 10px;
-  left: 10px;
-  border: 3px solid #8aa9ff;
+  top: calc(var(--bullet-size) / 2);
+  left: calc(var(--bullet-size) / 2);
+  border: calc(var(--bullet-size) * 0.15) solid var(--ctrls-prime-color);
   border-radius: 50%;
-  background-color: #8aa9ff;
-  width: 20px;
-  height: 20px;
+  background-color: var(--ctrls-prime-color);
+  width: var(--bullet-size);
+  height: var(--bullet-size);
   transition: calc(var(--basic-dalay) / 2) ease-out;
 }
 
 .bullet:hover::before {
-  border: 3px solid white;
-  background-color: white;
+  border: calc(var(--bullet-size) * 0.15) solid var(--hover-accent);
+  background-color: var(--hover-accent);
 }
 
 .bullet:checked::before {
-  background-color: black;
+  background-color: var(--check-mark);
 }
 
 /* Card stylies */
@@ -113,7 +131,7 @@ html {
 .caption {
   margin-top: 1.5rem;
   font-size: 1.5rem;
-  padding: 0.4rem 0;
+  padding: 0.6rem 0;
   transition: font-size var(--basic-dalay) ease-in-out;
 }
 
@@ -123,23 +141,34 @@ html {
 #bullet-04:checked ~ #slide-04 {
   opacity: 1;
   transform: translateY(0);
-  color: white;
+  color: var(--hover-accent);
 }
 
 /* Media query */
 
 /* Mobile view */
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
+  /* General */
+
+  :root {
+    /* Fonts */
+    --basic-font-size: 16px;
+  }
+
   html {
     background-color: slateblue;
+  }
+
+  .main {
+    padding: 2vh 5vw 4vh;
   }
 
   /* Slider */
 
   .slider {
-    width: 80vw;
-    grid-template-rows: 1fr 5rem;
+    width: 90vw;
+    grid-template-rows: 1fr 5.5rem;
   }
 
   /* Bullet */
@@ -148,25 +177,22 @@ html {
     justify-self: center;
   }
   #bullet-01 {
-    margin-right: 120px;
+    margin-right: calc(var(--bullet-size) * 6);
   }
   #bullet-02 {
-    margin-right: 40px;
+    margin-right: calc(var(--bullet-size) * 2);
   }
   #bullet-03 {
-    margin-right: -40px;
+    margin-right: calc(var(--bullet-size) * -2);
   }
   #bullet-04 {
-    margin-right: -120px;
+    margin-right: calc(var(--bullet-size) * -6);
   }
 
   /* Card */
 
   .card {
     transform: translateX(90%);
-    transition: transform var(--basic-dalay) ease-in-out,
-      opacity var(--basic-dalay) ease-out,
-      color var(--basic-dalay) ease-out var(--basic-dalay);
   }
 
   .img {
